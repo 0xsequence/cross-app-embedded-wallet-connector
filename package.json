@@ -1,0 +1,36 @@
+{
+  "name": "@0xsequence/cross-app-embedded-wallet-connector",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "dist/sequence-cross-app-embedded-wallet-connector.js",
+  "types": "dist/sequence-cross-app-embedded-wallet-connector.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && vite build",
+    "clean": "rimraf ./dist",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0xsequence/cross-app-embedded-wallet-connector.git"
+  },
+  "author": "0xSequence",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0xsequence/cross-app-embedded-wallet-connector/issues"
+  },
+  "peerDependencies": {
+    "@0xsequence/network": ">= 2.0.0",
+    "ethers": ">= 6.13.0",
+    "viem": ">= 2.0.0",
+    "wagmi": ">= 2.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "vite": "^5.4.8",
+    "vite-plugin-dts": "^3.8.3"
+  }
+}
