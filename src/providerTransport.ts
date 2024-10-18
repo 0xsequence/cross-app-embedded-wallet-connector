@@ -203,7 +203,6 @@ export class ProviderTransport {
       callback({ error: { message: "Wallet window was closed" } });
     });
     this.callbacks.clear();
-    this.connectionState = "disconnected";
   }
 
   private handleMessage = (event: MessageEvent) => {

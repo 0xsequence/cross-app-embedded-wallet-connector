@@ -1,6 +1,6 @@
 {
   "name": "@0xsequence/cross-app-embedded-wallet-connector",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "main": "dist/sequence-cross-app-embedded-wallet-connector.js",
   "types": "dist/sequence-cross-app-embedded-wallet-connector.d.ts",

@@ -199,25 +199,30 @@ export class SequenceWaasTransportProvider
         throw new Error("No params");
       }
 
-      const response = await this.transport.sendRequest(
-        method,
-        params,
-        this.getChainId()
-      );
-
-      console.log("response - in transport connector", response);
-
-      if (response.code === "transactionFailed") {
-        // Failed
-        throw new TransactionRejectedRpcError(
-          new Error(`Unable to send transaction: ${response.data.error}`)
+      try {
+        const response = await this.transport.sendRequest(
+          method,
+          params,
+          this.getChainId()
         );
-      }
 
-      if (response.code === "transactionReceipt") {
-        // Success
-        const { txHash } = response.data;
-        return txHash;
+        if (response.code === "transactionFailed") {
+          // Failed
+          throw new TransactionRejectedRpcError(
+            new Error(`Unable to send transaction: ${response.data.error}`)
+          );
+        }
+
+        if (response.code === "transactionReceipt") {
+          // Success
+          const { txHash } = response.data;
+          return txHash;
+        }
+      } catch (e) {
+        console.log("error in sendTransaction", e);
+        throw new TransactionRejectedRpcError(
+          new Error(`Unable to send transaction: wallet window was closed.`)
+        );
       }
     }
 
@@ -230,13 +235,20 @@ export class SequenceWaasTransportProvider
       if (!params) {
         throw new Error("No params");
       }
-      const response = await this.transport.sendRequest(
-        method,
-        params,
-        this.getChainId()
-      );
+      try {
+        const response = await this.transport.sendRequest(
+          method,
+          params,
+          this.getChainId()
+        );
 
-      return response.data.signature;
+        return response.data.signature;
+      } catch (e) {
+        console.log("error in sign", e);
+        throw new TransactionRejectedRpcError(
+          new Error(`Unable to sign: wallet window was closed.`)
+        );
+      }
     }
 
     return await this.jsonRpcProvider.send(method, params ?? []);
