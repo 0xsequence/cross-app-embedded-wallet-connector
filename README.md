@@ -2,18 +2,14 @@
 
 Wagmi connector for Sequence cross app embedded wallets
 
-## Install
+Wallet repository: [0xsequence/cross-app-embedded-wallet](https://github.com/0xsequence/cross-app-embedded-wallet)
+
+## Installation
+
+Install the connector along with its peer dependencies:
 
 ```shell
-pnpm install @0xsequence/cross-app-embedded-wallet-connector
-```
-
-## Peer Dependencies
-```
-"@0xsequence/network": ">= 2.0.0",
-"ethers": ">= 6.13.0",
-"viem": ">= 2.0.0",
-"wagmi": ">= 2.0.0"
+pnpm install @0xsequence/cross-app-embedded-wallet-connector @0xsequence/network@^2.0.0 ethers@^6.13.0 viem@^2.0.0 wagmi@^2.0.0
 ```
 
 ## Example Usage
@@ -26,7 +22,7 @@ import { sequenceCrossAppEmbeddedWallet } from "@0xsequence/cross-app-embedded-w
 const connector = sequenceCrossAppEmbeddedWallet({
   projectAccessKey: "...", // Your project access key from sequence.build
   walletUrl: "...", // URL of the cross app embedded wallet
-  chainId: 42170, // This is the starting chain id, chain can be switched related to transports in create config (see createConfig below)
+  chainId: arbitrumNova.id, // This is the starting chain id, chain can be switched related to transports in create config (see createConfig below)
 });
 
 export const config = createConfig({
@@ -38,4 +34,3 @@ export const config = createConfig({
   },
 });
 ```
-
